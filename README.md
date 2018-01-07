@@ -1,4 +1,4 @@
-# HelpUp! App
+# HelpUp App
 
 
 
