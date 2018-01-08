@@ -9,7 +9,9 @@ var Job = mongoose.Schema({
   date: String,
   location: String,
   description: String,
-  time: String
+  time: String,
+  //FIX eventually this should be an array of volunteers
+  volunteer: String
 })
 
 module.exports = mongoose.model('Job', Job)

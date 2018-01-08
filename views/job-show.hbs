@@ -10,12 +10,17 @@
     <div>
       {{job.time}}
     </div>
+    {{#if creator}}
+    <div>
+      <h5>Volunteers</h5>
+      {{job.volunteer}}
+    </div>
+    {{/if}}
   </div>
 
 <!-- only show edit and delete if currentUser created the job -->
   {{#if creator}}
     <div class="container row">
-
         <h5>Edit Opportunity</h5>
           <div class = "row">
           <form name='edit-job' action="/jobs/{{job.name}}?_method=put" method="post">
@@ -33,7 +38,7 @@
               <label for="edit-job-description">Description</label>
               <input class='validate' placeholder="Description"type="text" name="job[description]" id="edit-job-description" value="{{job.description}}">
             </div>
-            <button class="btn waves-effect waves-light col s6" type="submit" name="action">Submit
+            <button class="btn waves-effect waves-light col s6" type="submit" name="action">Update
             </button>
           </form>
           <form class="col s6" name="delete-job" action="/jobs/{{job.name}}/delete?_method=delete" method="post">
@@ -42,7 +47,19 @@
           </form>
         </div>
       </div>
+  {{else}}
+  <!-- if user is not job creator, show sign-up button -->
+  <form class="col s6" name="take-part" action="/jobs/{{job.name}}?_method=put" method="post">
+    <div class="input-field hide">
+      <label for="job-volunteer">Volunteer</label>
+      <input class='validate' type="text" name="job[volunteer]" id="job-volunteer" value="{{currentUser.local.email}}">
+    </div>
+      <button class="btn waves-effect waves-light" type="submit" name="action">Take Part
+      </button>
+  </form>
   {{/if}}
+
+
 
 {{else}}
 <h2>Sorry, that opportunity could not be found.</h2>
