@@ -6,7 +6,7 @@ function getSignup(request, response, next) {
 
 function postSignup(request, response, next) {
    var signupStrategy = passport.authenticate('local-signup', {
-     successRedirect : '/',
+     successRedirect : '/jobs',
      failureRedirect : '/signup',
      failureFlash : true
    })
@@ -20,7 +20,7 @@ function getLogin(request, response, next) {
 
 function postLogin(request, response, next) {
   var loginProperty = passport.authenticate('local-login', {
-    successRedirect : '/',
+    successRedirect : '/jobs',
     failureRedirect : '/login',
     failureFlash : true
   })
@@ -34,10 +34,10 @@ function getLogout(request, response, next) {
   response.redirect('/')
 }
 
-// Restricted page
-function secret(request, response){
-    response.render("secret.hbs")
-  }
+// // Restricted page
+// function secret(request, response){
+//     response.render("secret.hbs")
+//   }
 
 module.exports = {
   getLogin: getLogin,
@@ -45,5 +45,5 @@ module.exports = {
   getSignup: getSignup,
   postSignup: postSignup,
   getLogout: getLogout,
-  secret: secret
+  //secret: secret
 }
