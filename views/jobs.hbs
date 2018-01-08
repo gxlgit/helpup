@@ -1,24 +1,44 @@
 <h1>Ready to Make a Difference?</h1>
 
-<div class="container">
+<div class="container row">
 {{#each jobs as |job index|}}
-<h3>
-  <a href="/ jobs/{{job.name}}">{{job.name}} -- {{job.description}}</a>
-</h3>
+  <h3>
+    <a href="/jobs/{{job.name}}">{{job.name}}</a>
+  </h3>
+  <div>
+    {{job.description}}
+  </div>
+  
 {{/each}}
 </div>
 
 <div class="container">
     <h3>Add New Opportunity</h3>
       <form name= 'job' action="/jobs/{{job.name}}" method="post">
+        <div class="input-field hide">
+          <label for="job-name">Creator</label>
+          <input class='validate' type="text" name="job[creator]" id="job-creator" value={{currentUser.local.email}}>
+        </div>
+
         <div class="input-field">
           <label for="job-name">Title</label>
           <input class='validate' type="text" name="job[name]"  id="job-name">
         </div>
+
         <div class="input-field">
           <label for="job-description">Description</label>
           <input class='validate' type="text" name="job[description]" id="job-description">
         </div>
+
+        <div class="input-field col s6">
+          <!-- <label for="job-date">Date</label> -->
+          <input class='validate' type="date" name="job[date]" id="job-date" max="2020-12-31">
+        </div>
+        <div class="input-field col s6">
+          <!-- <label for="job-time">Start Time</label> -->
+          <input class='validate' type="time" name="job[time]" id="job-time">
+        </div>
+
         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
         </button>
       </form>

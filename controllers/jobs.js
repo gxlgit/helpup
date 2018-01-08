@@ -14,7 +14,18 @@ function getJobs(request, response) {
 }
 
 function showJob(request, response) {
+  let creator = null
+  let name = request.params.name
+    Jobs.findOne({name: name})
+    .then( job =>{
+      // console.log("user.email=>"+request.user.local.email)
+      // console.log("creator =>"+ job.creator)
 
+      //if the current User created the job, allow them to edit/delete
+      if( request.user.local.email === job.creator)
+        creator = true
+      response.render('job-show', {job: job, creator: creator})
+    })
 }
 
 function addJob(request, response) {
@@ -27,18 +38,26 @@ function addJob(request, response) {
 }
 
 function updateJob(request, response) {
-
+  let name = request.params.name
+    Jobs.findOneAndUpdate({name : name}, request.body.job, {new:true})
+      .then(job => {
+        response.redirect(`/jobs/${job.name}`)
+      })
 }
 
 function removeJob(request, response) {
-
+  let name = request.params.name
+    Jobs.findOneAndRemove({name: name})
+      .then( () => {
+        response.redirect(`/jobs`)
+      })
 }
 
 module.exports = {
-  getJobs: getJobs,
-  // showjob : showjob,
-   addJob : addJob,
-  // updatejob : updatejob,
-  // removejob : removejob
+  getJobs : getJobs,
+  showJob : showJob,
+  addJob  : addJob,
+  updateJob : updateJob,
+  removeJob : removeJob
 
 }

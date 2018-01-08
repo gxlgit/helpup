@@ -1,8 +1,6 @@
 var express = require('express')
 var router = express.Router()
-// Parses information from POST
 var bodyParser = require('body-parser')
-// Used to manipulate POST methods
 var methodOverride = require('method-override')
 var passport = require("passport")
 var usersController = require('../controllers/users')
@@ -34,5 +32,12 @@ router.route("/logout")
 router.route('/jobs')
    .get(authenticatedUser, jobsController.getJobs)
    .post(authenticatedUser, jobsController.addJob)
+
+router.route('/jobs/:name')
+    .get(authenticatedUser, jobsController.showJob)
+    .post(authenticatedUser, jobsController.updateJob)
+
+router.route('/jobs/:name/delete')
+    .post(authenticatedUser, jobsController.removeJob)
 
 module.exports = router

@@ -31,8 +31,8 @@ app.use(passport.session())
 app.use(flash())
 
 require('./config/passport')(passport)
-app.use(function (req, res, next) {
-  res.locals.currentUser = req.user
+app.use(function (request, response, next) {
+  response.locals.currentUser = request.user
   next()
 })
 

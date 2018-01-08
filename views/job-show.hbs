@@ -1,5 +1,49 @@
 {{#if job}}
-<div class="container">
-  <h3>{{job.name}}</h3>
-  <p> {{job.description}}</p>
-</div>
+  <div class="container row">
+    <h3>{{job.name}}</h3>
+    <div>
+      {{job.description}}
+    </div>
+    <div>
+      {{job.date}}
+    </div>
+    <div>
+      {{job.time}}
+    </div>
+  </div>
+
+<!-- only show edit and delete if currentUser created the job -->
+  {{#if creator}}
+    <div class="container row">
+
+        <h5>Edit Opportunity</h5>
+          <div class = "row">
+          <form name='edit-job' action="/jobs/{{job.name}}?_method=put" method="post">
+            <!-- <div class="input-field hide">
+              <label for="job-name">Creator</label>
+              <input class='validate' type="text" name="job[creator]" id="job-creator" value={{currentUser.local.email}}>
+            </div> -->
+
+            <div class="input-field">
+              <input class='validate' placeholder="Title"type="text" name="job[name]"  id="edit-job-name" value="{{job.name}}">
+              <label for="edit-job-name">Title</label>
+            </div>
+
+            <div class="input-field">
+              <label for="edit-job-description">Description</label>
+              <input class='validate' placeholder="Description"type="text" name="job[description]" id="edit-job-description" value="{{job.description}}">
+            </div>
+            <button class="btn waves-effect waves-light col s6" type="submit" name="action">Submit
+            </button>
+          </form>
+          <form class="col s6" name="delete-job" action="/jobs/{{job.name}}/delete?_method=delete" method="post">
+              <button class="btn waves-effect waves-light" type="submit" name="action">Remove
+              </button>
+          </form>
+        </div>
+      </div>
+  {{/if}}
+
+{{else}}
+<h2>Sorry, that opportunity could not be found.</h2>
+{{/if}}
