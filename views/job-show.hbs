@@ -15,11 +15,14 @@
     <div class="row">
       <h5>Volunteers</h5>
       {{#if job.volunteers}}
+      <ul>
         {{#each job.volunteers as |volunteer index|}}
-        <div class=" light-blue-text text-darken-1">
-          {{volunteer.name}}   ——   <a href="mailto:{{volunteer.email}}">{{volunteer.email}}</a>
-        </div>
+          <li class=" light-blue-text text-darken-1">
+            {{volunteer.name}}
+            <a href="mailto:{{volunteer.email}}"><i class="material-icons left">email</i></a>
+          </li><br>
         {{/each}}
+      </ul>
       {{else}}
         <span class=" light-blue-text text-darken-1">No volunteers yet</span>
       {{/if}}
