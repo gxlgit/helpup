@@ -14,11 +14,6 @@ function getJobs(request, response) {
 }
 
 
-function isVolunteer(volunteer, currUser){
-  return volunteer.email === currUser
-
-}
-
 function showJob(request, response) {
   let creator = null
   let volunteer = null

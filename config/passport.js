@@ -20,7 +20,8 @@ var User            = require('../models/user')
      passwordField : 'password',
      passReqToCallback : true
    }, function(req, email, password, callback) {
-     // Find a user with this e-mail
+     //FIX IT need to check if handle exists too
+     // Find a user with this handle
    User.findOne({ 'local.email' :  email }, function(err, user) {
      if (err) return callback(err)
 
@@ -32,6 +33,7 @@ var User            = require('../models/user')
      // There is no email registered with this emai
     // Create a new user
        var newUser            = new User()
+       newUser.local.handle   = req.body.handle
        newUser.local.name     = req.body.name
        newUser.local.email    = email
        newUser.local.password = newUser.encrypt(password)

@@ -15,7 +15,6 @@ var Job = mongoose.Schema({
   location: String,
   description: String,
   time: String,
-  //FIX eventually this should be an array of volunteers
   volunteers: [Volunteer]
 })
 

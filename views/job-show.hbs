@@ -69,7 +69,7 @@
   <div class = "row">
     {{#if volunteer}}
     <h4 class="section grey-text">Thanks for signing up!</h4>
-    <!-- if user is not job creator & id signed up to volunteer, show cancel button -->
+    <!-- if user is not job creator & is signed up to volunteer, show cancel button -->
     <form name="take-part" action="/jobs/{{job.name}}/volunteer_update?_method=delete" method="post">
       <div class="input-field hide">
         <label for="remove-volunteer">Volunteer</label>
