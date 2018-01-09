@@ -40,4 +40,10 @@ router.route('/jobs/:name')
 router.route('/jobs/:name/delete')
     .post(authenticatedUser, jobsController.removeJob)
 
+router.route('/jobs/:name/removeVolunteer')
+    .post(authenticatedUser, jobsController.removeVolunteer)
+
+router.route('/jobs/:name/addVolunteer')
+    .post(authenticatedUser, jobsController.addVolunteer)
+
 module.exports = router

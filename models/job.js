@@ -3,6 +3,11 @@ Mongoose schema for the Volunteer Jobs
 */
 var mongoose = require('mongoose')
 
+var Volunteer = mongoose.Schema({
+  name: String,
+  email: String
+})
+
 var Job = mongoose.Schema({
   creator: String,
   name: String,
@@ -11,7 +16,10 @@ var Job = mongoose.Schema({
   description: String,
   time: String,
   //FIX eventually this should be an array of volunteers
-  volunteer: String
+  volunteers: [Volunteer]
 })
 
-module.exports = mongoose.model('Job', Job)
+module.exports = {
+  Job: mongoose.model('Job', Job),
+  Volunteer: mongoose.model('Volunteer', Volunteer)
+}

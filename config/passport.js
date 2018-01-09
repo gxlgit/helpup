@@ -1,5 +1,5 @@
 /*
-Borrowed from express-passport lesson
+Mostly borrowed from WDI express-passport lesson
 */
 var LocalStrategy   = require('passport-local').Strategy
 var User            = require('../models/user')
@@ -27,17 +27,19 @@ var User            = require('../models/user')
      // If there already is a user with this email
      if (user) {
         return callback(null, false, req.flash('signupMessage', 'This email is already used.'))
-     } else {
+     }
+     else {
      // There is no email registered with this emai
-   // Create a new user
-   var newUser            = new User()
-   newUser.local.email    = email
-   newUser.local.password = newUser.encrypt(password)
+    // Create a new user
+       var newUser            = new User()
+       newUser.local.name     = req.body.name
+       newUser.local.email    = email
+       newUser.local.password = newUser.encrypt(password)
 
-   newUser.save(function(err) {
-     if (err) throw err
-     return callback(null, newUser)
-    })
+       newUser.save(function(err) {
+         if (err) throw err
+         return callback(null, newUser)
+        })
     }
     })
   }))

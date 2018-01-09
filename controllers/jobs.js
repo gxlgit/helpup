@@ -2,7 +2,7 @@ const Jobs        = require('../models/job')
 var passport         = require("passport")
 
 function getJobs(request, response) {
-  Jobs.find({})
+  Jobs.Job.find({})
       .then((jobsData) => {
           response.render('jobs.hbs',{
               jobs: jobsData
@@ -13,23 +13,43 @@ function getJobs(request, response) {
       })
 }
 
+
+function isVolunteer(volunteer, currUser){
+  return volunteer.email === currUser
+
+}
+
 function showJob(request, response) {
   let creator = null
+  let volunteer = null
   let name = request.params.name
-    Jobs.findOne({name: name})
+
+  Jobs.Job.findOne({name: name})
     .then( job =>{
-      // console.log("user.email=>"+request.user.local.email)
-      // console.log("creator =>"+ job.creator)
+
+       //console.log("user.email=>"+request.user.local.email)
+      //console.log("creator =>"+ job.creator)
 
       //if the current User created the job, allow them to edit/delete
-      if( request.user.local.email === job.creator)
+      if( request.user.local.email === job.creator ){
         creator = true
-      response.render('job-show', {job: job, creator: creator})
+        response.render('job-show',
+          {job: job, creator: creator, volunteer:volunteer})
+      }
+      //else check to see if they are currently a volunteer for the job
+      else{
+        //referenced code from https://stackoverflow.com/questions/13097266/querying-nested-documents-using-mongoose-mongodb
+        Jobs.Job.find({name:name,'volunteers.email':request.user.local.email})
+                    .then( volunteer =>{
+                      response.render('job-show',
+                      {job: job, creator: creator, volunteer:volunteer})
+                    })
+      }
     })
 }
 
 function addJob(request, response) {
-  Jobs.create(request.body.job)
+  Jobs.Job.create(request.body.job)
     .then( job => {
       // if the job exists then go to the job page
       //response.redirect(`/jobs/${job.name}`)
@@ -39,7 +59,7 @@ function addJob(request, response) {
 
 function updateJob(request, response) {
   let name = request.params.name
-    Jobs.findOneAndUpdate({name : name}, request.body.job, {new:true})
+    Jobs.Job.findOneAndUpdate({name : name}, request.body.job, {new:true})
       .then(job => {
         response.redirect(`/jobs/${job.name}`)
       })
@@ -47,17 +67,50 @@ function updateJob(request, response) {
 
 function removeJob(request, response) {
   let name = request.params.name
-    Jobs.findOneAndRemove({name: name})
+    Jobs.Job.findOneAndRemove({name: name})
       .then( () => {
         response.redirect(`/jobs`)
       })
 }
+
+function removeVolunteer(request, response) {
+  let name = request.params.name
+  Jobs.Job.findOneAndUpdate(
+        {name: name},
+        { $pull: {volunteers: { email: request.user.local.email,
+                                name:  request.user.local.name}
+                              } })
+                              .then( (job)=> {
+                                      console.log('REMOVED ITEM: ' + job)
+                                      response.redirect(`/jobs/${job.name}`)
+                                    })
+}
+
+
+function addVolunteer(request, response) {
+  let name = request.params.name
+  console.log('adding=>'+request.user.local.name)
+  Jobs.Job.findOneAndUpdate(
+          {name: name},
+          { $push: {volunteers: new Jobs.Volunteer({ email: request.user.local.email,
+                                                     name:  request.user.local.name})
+                    }
+          })
+          .then( (job)=> {
+                  console.log('ADDED Volunteer: ' + job)
+                  response.redirect(`/jobs/${job.name}`)
+                })
+}
+
+
+
 
 module.exports = {
   getJobs : getJobs,
   showJob : showJob,
   addJob  : addJob,
   updateJob : updateJob,
-  removeJob : removeJob
-
+  removeJob : removeJob,
+  addVolunteer: addVolunteer,
+  removeVolunteer: removeVolunteer
 }
