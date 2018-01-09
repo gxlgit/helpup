@@ -11,12 +11,17 @@ const session      = require('express-session')
 const methodOverride = require('method-override')
 const PORT         = 6060
 
+
+
+
 if (process.env.NODE_ENV == "production") {
   mongoose.connect(process.env.MLAB_URL)
 } else {
   mongoose.connect('mongodb://localhost/helpup',{useMongoClient: true})
 }
 mongoose.Promise = Promise
+
+
 
 app.use(morgan('dev'))
 app.use(cookieParser())
@@ -37,6 +42,7 @@ app.use(function (request, response, next) {
   response.locals.currentUser = request.user
   next()
 })
+
 
 var routes = require('./config/routes')
 app.use(routes)

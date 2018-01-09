@@ -1,6 +1,7 @@
 const User       = require('../models/user')
 var passport         = require("passport")
 
+
 function getProfile(request, response) {
   User.findOne({'local.email': request.user.local.email})
       .then((user) => {
@@ -13,19 +14,25 @@ function getProfile(request, response) {
       })
 }
 
+//Updates user's profile
 function updateProfile(request, response) {
-  console.log('profile=>'+request.body.profile.address)
-  console.log('email=>'+request.user.local.email)
   User.findOneAndUpdate(
       {'local.email': request.user.local.email},
       {'local.profile': request.body.profile},
-      // {'local.profile.address': request.body.profile.address,
-      //  'local.profile.phone': request.body.profile.phone,
-      //  'local.profile.interests': [request.body.profile.interests]},
-     {new: true} )
+      {new: true} )
       .then((user) => {
-        console.log('user=>'+user)
           response.redirect('/profile')
+      })
+      .catch((err) => {
+          console.log(err)
+      })
+}
+
+//Deletes user's profile and account
+function deleteProfile(request, response) {
+  User.findOneAndRemove({'local.email': request.user.local.email})
+      .then(() => {
+          response.redirect('/logout')
       })
       .catch((err) => {
           console.log(err)
@@ -36,6 +43,6 @@ function updateProfile(request, response) {
 
 module.exports = {
   getProfile : getProfile,
-  updateProfile : updateProfile
-  //removeProfile : removeProfile
+  updateProfile : updateProfile,
+  deleteProfile : deleteProfile
 }

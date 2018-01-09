@@ -2,21 +2,27 @@
 <!-- {{#if message}}
   <div class="alert alert-danger">{{message}}</div>
 {{/if}} -->
-<form action="/profile?_method=put" method="post">
-  <div class="input-field">
-    <label for="profile-addr">Address</label>
-    <input class="validate" type="text" name="profile[address]" id="profile-addr" value="{{profile.address}}">
-  </div>
-  <div class="input-field">
-    <label for="profile-phone">Phone</label>
-    <input class="validate" type="text" name="profile[phone]" id="profile-phone" value="{{profile.phone}}">
-  </div>
-  <!-- FIX IT eventually make into checkboxes -->
-  <div class="input-field">
-    <label for="profile-interests">Interests</label>
-    <input class="validate" type="text" name="profile[interests]" id="profile-interests" value="{{profile.interests}}">
-  </div>
+<div class="row"
+  <form action="/profile?_method=put" method="post">
+    <div class="input-field">
+      <label for="profile-addr">Address</label>
+      <input class="validate" type="text" name="profile[address]" id="profile-addr" value="{{profile.address}}">
+    </div>
+    <div class="input-field">
+      <label for="profile-phone">Phone</label>
+      <input class="validate" type="text" name="profile[phone]" id="profile-phone" value="{{profile.phone}}">
+    </div>
+    <!-- FIX IT eventually make into checkboxes -->
+    <div class="input-field">
+      <label for="profile-interests">Interests</label>
+      <input class="validate" type="text" name="profile[interests]" id="profile-interests" value="{{profile.interests}}">
+    </div>
 
-  <button class="btn waves-effect waves-light green darken-3" type="submit" name="action">Update
-  </button>
-</form>
+    <button class="btn waves-effect waves-light green darken-3 col" type="submit" name="action">Update
+    </button>
+  </form>
+  <form class="" action="/profile?_method=delete" method="post">
+    <button class="btn waves-effect waves-light red darken-3 col" type="submit" name="action">Delete Account
+    </button>
+  </form>
+</div>

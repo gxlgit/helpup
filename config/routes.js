@@ -6,6 +6,9 @@ var staticsController = require('../controllers/statics')
 var jobsController = require('../controllers/jobs')
 var profileController = require('../controllers/profile')
 
+
+
+
 function authenticatedUser(req, res, next) {
     // If the user is authenticated, then we continue the execution
     if (req.isAuthenticated()) return next()
@@ -31,7 +34,7 @@ router.route("/logout")
 router.route('/profile')
   .get(authenticatedUser, profileController.getProfile)
   .put(authenticatedUser, profileController.updateProfile)
-//  .delete(authenticatedUser, profileController.deleteProfile)
+  .delete(authenticatedUser, profileController.deleteProfile)
 
 router.route('/jobs')
    .get(authenticatedUser, jobsController.getJobs)
