@@ -1,3 +1,6 @@
+html{
+  color: #37474f;
+}
 body {
    display: flex;
    min-height: 100vh;
@@ -7,3 +10,13 @@ body {
  main {
    flex: 1 0 auto;
  }
+nav .brand-logo{
+  font-family: 'Baloo Paaji', cursive;
+  font-size: 46px !important;
+  padding-left: 10px !important;
+
+}
+
+.index-quote{
+  padding: 0 !important;
+}

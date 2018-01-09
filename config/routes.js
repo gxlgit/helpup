@@ -1,7 +1,5 @@
 var express = require('express')
 var router = express.Router()
-var bodyParser = require('body-parser')
-var methodOverride = require('method-override')
 var passport = require("passport")
 var usersController = require('../controllers/users')
 var staticsController = require('../controllers/statics')
@@ -35,15 +33,12 @@ router.route('/jobs')
 
 router.route('/jobs/:name')
     .get(authenticatedUser, jobsController.showJob)
-    .post(authenticatedUser, jobsController.updateJob)
+    .put(authenticatedUser, jobsController.updateJob)
+    .delete(authenticatedUser, jobsController.removeJob)
 
-router.route('/jobs/:name/delete')
-    .post(authenticatedUser, jobsController.removeJob)
-
-router.route('/jobs/:name/removeVolunteer')
-    .post(authenticatedUser, jobsController.removeVolunteer)
-
-router.route('/jobs/:name/addVolunteer')
+router.route('/jobs/:name/volunteer_update')
+    .delete(authenticatedUser, jobsController.removeVolunteer)
     .post(authenticatedUser, jobsController.addVolunteer)
+
 
 module.exports = router

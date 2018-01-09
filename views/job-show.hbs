@@ -1,32 +1,37 @@
 {{#if job}}
-  <div class="container row">
-    <h3>{{job.name}}</h3>
-    <div>
-      {{job.description}}
-    </div>
-    <div>
-      {{job.date}}
-    </div>
-    <div>
-      {{job.time}}
+  <div class="section">
+    <div class="row section">
+        <h3>{{job.name}}</h3>
+        <div class=" light-blue-text text-darken-1">
+          <div>
+            {{job.description}}
+          </div>
+          <div>
+            {{job.date}} @  {{job.time}}
+          </div>
+        </div>
     </div>
     {{#if creator}}
-    <div>
+    <div class="row">
       <h5>Volunteers</h5>
-      {{#each job.volunteers as |volunteer index|}}
-      <div>
-        {{volunteer.name}}   --    <a href="mailto:{{volunteer.email}}">{{volunteer.email}}</a>
-      </div>
-      {{/each}}
+      {{#if job.volunteers}}
+        {{#each job.volunteers as |volunteer index|}}
+        <div class=" light-blue-text text-darken-1">
+          {{volunteer.name}}   ——   <a href="mailto:{{volunteer.email}}">{{volunteer.email}}</a>
+        </div>
+        {{/each}}
+      {{else}}
+        <span class=" light-blue-text text-darken-1">No volunteers yet</span>
+      {{/if}}
     </div>
     {{/if}}
   </div>
 
 <!-- only show edit and delete if currentUser created the job -->
   {{#if creator}}
-    <div class="container card-panel row">
-        <h5>Edit Opportunity</h5>
-          <div class = "row">
+    <div class="container blue-grey lighten-5 card-panel row section">
+        <h5 class="section">Edit Opportunity</h5>
+          <div class = "row blue-grey-text text-darken-2">
           <form name='edit-job' action="/jobs/{{job.name}}?_method=put" method="post">
 
             <div class="input-field">
@@ -48,11 +53,11 @@
               <label for="job-time">Start Time</label>
               <input type="text" class="timepicker" name="job[time]" id="job-time" value="{{job.time}}">
 
-            <button class="btn waves-effect waves-light col s6" type="submit" name="action">Update
+            <button class="btn waves-effect waves-light col s6 green darken-3" type="submit" name="action">Update
             </button>
           </form>
-          <form class="col s6" name="delete-job" action="/jobs/{{job.name}}/delete?_method=delete" method="post">
-              <button class="btn waves-effect waves-light" type="submit" name="action">Remove
+          <form class="col s6" name="delete-job" action="/jobs/{{job.name}}?_method=delete" method="post">
+              <button class="btn waves-effect waves-light green darken-3" type="submit" name="action">Remove
               </button>
           </form>
         </div>
@@ -60,24 +65,24 @@
   {{else}}
   <div class = "row">
     {{#if volunteer}}
-    <span>You are signed up!</span>
+    <h4 class="section grey-text">Thanks for signing up!</h4>
     <!-- if user is not job creator & id signed up to volunteer, show cancel button -->
-    <form name="take-part" action="/jobs/{{job.name}}/removeVolunteer?_method=delete" method="post">
+    <form name="take-part" action="/jobs/{{job.name}}/volunteer_update?_method=delete" method="post">
       <div class="input-field hide">
         <label for="remove-volunteer">Volunteer</label>
         <input class='validate' type="text" name="{{currentUser.local.email}}" id="remove-volunteer" value="">
       </div>
-        <button class="btn waves-effect waves-light" type="submit" name="action">Can't Make It
+        <button class="btn waves-effect waves-light green darken-3" type="submit" name="action">Can't Make It
         </button>
     </form>
     {{else}}
     <!-- if user is not job creator & not already signed up to volunteer, show sign-up button -->
-    <form  name="take-part" action="/jobs/{{job.name}}/addVolunteer?_method=put" method="post">
+    <form  name="take-part" action="/jobs/{{job.name}}/volunteer_update" method="post">
       <div class="input-field hide">
         <label for="add-volunteer">Volunteer</label>
         <input class='validate' type="text" name="job[volunteer]" id="add-volunteer" value="{{currentUser.local.email}}">
       </div>
-        <button class="btn waves-effect waves-light" type="submit" name="action">Take Part
+        <button class="btn waves-effect waves-light green darken-3" type="submit" name="action">Take Part
         </button>
     </form>
     {{/if}}

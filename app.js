@@ -8,6 +8,7 @@ const morgan       = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser   = require('body-parser')
 const session      = require('express-session')
+const methodOverride = require('method-override')
 const PORT         = 6060
 
 if (process.env.NODE_ENV == "production") {
@@ -19,7 +20,8 @@ mongoose.Promise = Promise
 
 app.use(morgan('dev'))
 app.use(cookieParser())
-app.use(bodyParser())
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(methodOverride('_method'))
 
 app.set('view engine', 'hbs')
 app.set("views","./views")
