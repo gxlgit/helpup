@@ -15,7 +15,7 @@
       <h5>Volunteers</h5>
       {{#each job.volunteers as |volunteer index|}}
       <div>
-        {{volunteer.name}}   --    <a href="mailto:{{volunteer.email}}">{{volunteer.email}}</a>  
+        {{volunteer.name}}   --    <a href="mailto:{{volunteer.email}}">{{volunteer.email}}</a>
       </div>
       {{/each}}
     </div>
@@ -28,10 +28,6 @@
         <h5>Edit Opportunity</h5>
           <div class = "row">
           <form name='edit-job' action="/jobs/{{job.name}}?_method=put" method="post">
-            <!-- <div class="input-field hide">
-              <label for="job-name">Creator</label>
-              <input class='validate' type="text" name="job[creator]" id="job-creator" value={{currentUser.local.email}}>
-            </div> -->
 
             <div class="input-field">
               <input class='validate' placeholder="Title"type="text" name="job[name]"  id="edit-job-name" value="{{job.name}}">
@@ -42,6 +38,16 @@
               <label for="edit-job-description">Description</label>
               <input class='validate' placeholder="Description"type="text" name="job[description]" id="edit-job-description" value="{{job.description}}">
             </div>
+
+            <div class="input-field">
+              <label for="job-date">Date</label>
+              <input type="text" class="datepicker" name="job[date]" id="job-date" value="{{job.date}}">
+              <!-- <input class='validate' type="date" name="job[date]" id="job-date" max="2020-12-31"> -->
+            </div>
+            <div class="input-field">
+              <label for="job-time">Start Time</label>
+              <input type="text" class="timepicker" name="job[time]" id="job-time" value="{{job.time}}">
+
             <button class="btn waves-effect waves-light col s6" type="submit" name="action">Update
             </button>
           </form>

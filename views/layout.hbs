@@ -15,26 +15,37 @@
   <header>
     <nav>
         <div class="nav-wrapper teal darken-1">
-          <a href="/jobs" class="brand-logo">Help Up</a>
+          <a href="/jobs" class="brand-logo" >Help Up</a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="/login">login</a></li>
-            <li><a href="/logout">logout</a></li>
-            <li><a href="/signup">signup</a></li>
+            {{#if currentUser}}
+              <li><a href="/logout">Logout {{currentUser.local.email}}</a></li>
+            {{else}}
+              <li><a href="/login">Login</a></li>
+              <li><a href="/signup">Signup</a></li>
+            {{/if}}
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+            {{#if currentUser}}
+              <li><a href="/logout">Logout {{currentUser.local.email}}</a></li>
+            {{else}}
+              <li><a href="/login">Login</a></li>
+              <li><a href="/signup">Signup</a></li>
+            {{/if}}
           </ul>
         </div>
-    </nav>
 
+    </nav>
   </header>
-  <main>
-    <div class="container">
-        {{{body}}}
-    </div>
+  <main class = "container">
+      {{{body}}}
   </main>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script src="/js/app.js"></script>
 
 </body>
 </html>
