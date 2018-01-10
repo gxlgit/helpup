@@ -1,5 +1,6 @@
 html{
   color: #37474f;
+  font-family: 'Varela Round', 'Roboto', sans-serif;
 }
 body {
    display: flex;
@@ -11,7 +12,7 @@ body {
    flex: 1 0 auto;
  }
 nav .brand-logo{
-  font-family: 'Baloo Paaji', cursive;
+  font-family: 'Baloo Paaji', 'Roboto', cursive;
   font-size: 46px !important;
   padding-left: 10px !important;
 

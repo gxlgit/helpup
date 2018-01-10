@@ -21,7 +21,7 @@ if (process.env.NODE_ENV == "production") {
 }
 mongoose.Promise = Promise
 
-
+mongodb://<dbuser>:<dbpassword>@ds151207.mlab.com:51207/helpup
 
 app.use(morgan('dev'))
 app.use(cookieParser())
@@ -46,6 +46,7 @@ app.use(function (request, response, next) {
 
 var routes = require('./config/routes')
 app.use(routes)
+
 
 app.set('port', process.env.PORT || PORT)
 
