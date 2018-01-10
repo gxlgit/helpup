@@ -7,8 +7,6 @@ var jobsController = require('../controllers/jobs')
 var profileController = require('../controllers/profile')
 
 
-
-
 function authenticatedUser(req, res, next) {
     // If the user is authenticated, then we continue the execution
     if (req.isAuthenticated()) return next()
@@ -48,6 +46,7 @@ router.route('/jobs/:name')
 router.route('/jobs/:name/volunteer_update')
     .delete(authenticatedUser, jobsController.removeVolunteer)
     .post(authenticatedUser, jobsController.addVolunteer)
+
 
 
 module.exports = router

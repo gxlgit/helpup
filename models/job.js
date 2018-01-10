@@ -5,7 +5,8 @@ var mongoose = require('mongoose')
 
 var Volunteer = mongoose.Schema({
   name: String,
-  email: String
+  email: String,
+  img: String
 })
 
 var Job = mongoose.Schema({
@@ -15,6 +16,7 @@ var Job = mongoose.Schema({
   location: String,
   description: String,
   time: String,
+  img: String,
   volunteers: [Volunteer]
 })
 

@@ -19,7 +19,7 @@ $('.timepicker').pickatime({
   aftershow: function(){} //Function for after opening timepicker
 })
 
- $(".button-collapse").sideNav()
+ $('.button-collapse').sideNav()
 
  $('.dropdown-button').dropdown({
       inDuration: 300,
@@ -32,3 +32,30 @@ $('.timepicker').pickatime({
       stopPropagation: false // Stops event propagation
     }
   );
+
+
+//w3Schools
+  function validateSignup() {
+
+    if ( document.forms['signup']['name'].value === '') {
+        Materialize.toast('Must give a name!', 4000, 'red') // 4000 is the duration of the toast
+        //alert('Must give a name');
+        return false
+    }
+    if ( document.forms['signup']['handle'].value === '') {
+        Materialize.toast('Must pick a login name!', 4000, 'red') // 4000 is the duration of the toast
+        //alert('Must give a name');
+        return false
+    }
+    if ( document.forms['signup']['email'].value === '') {
+        Materialize.toast('Must give an email address!', 4000, 'red') // 4000 is the duration of the toast
+        //alert('Must give a name');
+        return false
+    }
+
+    if ( document.forms['signup']['password'].value === '') {
+        Materialize.toast('Must pick a password!', 4000, 'red') // 4000 is the duration of the toast
+        //alert('Must give a name');
+        return false
+    }
+}

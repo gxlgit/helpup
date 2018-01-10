@@ -1,6 +1,8 @@
+<div class = "section">
 <h1>Ready to Make a Difference?</h1>
+<h4 class="blue-grey-text">Current helpUps</h4>
 
-<div class="container row">
+<!-- <div class="container"> -->
 {{#each jobs as |job index|}}
   <h3>
     <a href="/jobs/{{job.name}}">{{job.name}}</a>
@@ -12,8 +14,8 @@
 {{/each}}
 </div>
 
-<div class="container">
-    <h3>Add New Opportunity</h3>
+<div class="container card-panel yellow lighten-4">
+    <h3>Add New helpUp</h3>
       <form name= 'job' action="/jobs/{{job.name}}" method="post">
         <div class="input-field hide">
           <label for="job-name">Creator</label>
@@ -40,8 +42,11 @@
           <input type="text" class="timepicker" name="job[time]" id="job-time">
           <!-- <input class='validate' type="time" name="job[time]" id="job-time"> -->
         </div>
-
+        <div class="input-field">
+          <label for="job-img">User Photo URL</label>
+          <input class="validate" type="text" name="job[img]" id="job-img">
+        </div>
         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
         </button>
       </form>
-</div>
+<!-- </div> -->

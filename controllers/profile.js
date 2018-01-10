@@ -40,9 +40,9 @@ function deleteProfile(request, response) {
 }
 
 
-
 module.exports = {
   getProfile : getProfile,
   updateProfile : updateProfile,
   deleteProfile : deleteProfile
+  //addPhoto      : addPhoto
 }

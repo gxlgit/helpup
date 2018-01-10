@@ -28,6 +28,8 @@ function showJob(request, response) {
       //if the current User created the job, allow them to edit/delete
       if( request.user.local.email === job.creator ){
         creator = true
+        //FIX IT eventually should give volunteer as an array of volunteer img, name, email
+        //for now this is hard coded in
         response.render('job-show',
           {job: job, creator: creator, volunteer:volunteer})
       }
@@ -88,7 +90,8 @@ function addVolunteer(request, response) {
   Jobs.Job.findOneAndUpdate(
           {name: name},
           { $push: {volunteers: new Jobs.Volunteer({ email: request.user.local.email,
-                                                     name:  request.user.local.name})
+                                                     name:  request.user.local.name,
+                                                     img:   request.user.local.profile.img})
                     }
           })
           .then( (job)=> {

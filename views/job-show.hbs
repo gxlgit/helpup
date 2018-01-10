@@ -1,6 +1,11 @@
 {{#if job}}
   <div class="section">
     <div class="row section">
+      {{#if job.img}}
+        <div class="">
+            <img src="{{job.img}}" alt="volunteering photo" height="200" width="200">
+        </div>
+      {{/if}}
         <h3>{{job.name}}</h3>
         <div class=" light-blue-text text-darken-1">
           <div>
@@ -17,10 +22,18 @@
       {{#if job.volunteers}}
       <ul>
         {{#each job.volunteers as |volunteer index|}}
-          <li class=" light-blue-text text-darken-1">
+          <!-- <li class=" light-blue-text text-darken-1">
             {{volunteer.name}}
             <a href="mailto:{{volunteer.email}}"><i class="material-icons left">email</i></a>
-          </li><br>
+          </li><br> -->
+          <li>
+            <a href="mailto:{{volunteer.email}}">
+              <div class="chip">
+                <img src="{{volunteer.img}}" alt="{{volunteer.name}}" >
+                {{volunteer.name}}
+              </div>
+            </a>
+          </li>
         {{/each}}
       </ul>
       {{else}}
@@ -32,7 +45,7 @@
 
 <!-- only show edit and delete if currentUser created the job -->
   {{#if creator}}
-    <div class="container blue-grey lighten-5 card-panel row section">
+    <div class="container  card-panel yellow lighten-4 row section">
         <h5 class="section">Edit Opportunity</h5>
           <div class = "row blue-grey-text text-darken-2">
           <form name='edit-job' action="/jobs/{{job.name}}?_method=put" method="post">
@@ -55,7 +68,11 @@
             <div class="input-field">
               <label for="job-time">Start Time</label>
               <input type="text" class="timepicker" name="job[time]" id="job-time" value="{{job.time}}">
-
+            </div>
+            <div class="input-field">
+              <label for="job-img">User Photo URL</label>
+              <input class="validate" type="text" name="job[img]" id="job-img" value="{{job.img}}">
+            </div>
             <button class="btn waves-effect waves-light col s6 green darken-3" type="submit" name="action">Update
             </button>
           </form>
