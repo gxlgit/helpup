@@ -35,20 +35,20 @@ $('.timepicker').pickatime({
   );
 
 //https://developers.google.com/maps/documentation/javascript/adding-a-google-map#key
-  function initMap() {
-
-          var theMap = document.getElementById('map')
-          var location = {lat: -25.363, lng: 131.044}
-          //var location = theMap.innerHTML
-          var map = new google.maps.Map( theMap, {
-            zoom: 4,
-            center: location
-          })
-          var marker = new google.maps.Marker({
-            position: location,
-            map: map
-          })
-        }
+  // function initMap() {
+  //
+  //         var theMap = document.getElementById('map')
+  //         var location = {lat: -25.363, lng: 131.044}
+  //         //var location = theMap.innerHTML
+  //         var map = new google.maps.Map( theMap, {
+  //           zoom: 4,
+  //           center: location
+  //         })
+  //         var marker = new google.maps.Marker({
+  //           position: location,
+  //           map: map
+  //         })
+  //       }
 //https://developers.google.com/maps/documentation/javascript/geocoding#GetStarted
         var geocoder
         var map
@@ -62,16 +62,7 @@ $('.timepicker').pickatime({
           }
           map = new google.maps.Map(document.getElementById('job-map'), mapOptions)
         }
-        function initializeFixedMap() {
-          geocoder = new google.maps.Geocoder();
-          var latlng = new google.maps.LatLng(-34.397, 150.644)
-          var mapOptions = {
-            zoom: 8,
-            center: latlng
-          }
-          map = new google.maps.Map(document.getElementById('job-map'), mapOptions)
-          codeAddress()
-        }
+
 
         function codeAddress() {
           var address = document.getElementById('job-location').value
@@ -90,6 +81,11 @@ $('.timepicker').pickatime({
             }
           })
         }
+
+      function initializeFixedMap() {
+          initialize()
+          codeAddress()
+      }
 
 //w3Schools
   function validateSignup() {
