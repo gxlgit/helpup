@@ -16,3 +16,4 @@ On removing profile delete volunteer from any opportunities they are taking part
 + a map showing the location
 + a user thumbnail on the navbar after login
 + separate accounts for organizations
++ finesse layout and styles
