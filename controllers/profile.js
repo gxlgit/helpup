@@ -1,7 +1,6 @@
 const User       = require('../models/user')
-var passport         = require("passport")
 
-
+// Read's user's profile
 function getProfile(request, response) {
   User.findOne({'local.email': request.user.local.email})
       .then((user) => {
@@ -31,18 +30,17 @@ function updateProfile(request, response) {
 //Deletes user's profile and account
 function deleteProfile(request, response) {
   User.findOneAndRemove({'local.email': request.user.local.email})
-      .then(() => {
-          response.redirect('/logout')
-      })
+      .then( () => {
+            response.redirect('/logout')})
       .catch((err) => {
           console.log(err)
       })
 }
 
 
+
 module.exports = {
   getProfile : getProfile,
   updateProfile : updateProfile,
   deleteProfile : deleteProfile
-  //addPhoto      : addPhoto
 }

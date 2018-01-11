@@ -46,10 +46,10 @@
 <!-- only show edit and delete if currentUser created the job -->
   {{#if creator}}
     <div class="container  card-panel yellow lighten-4 row section">
-        <h5 class="section">Edit Opportunity</h5>
+
           <div class = "row blue-grey-text text-darken-2">
           <form name='edit-job' action="/jobs/{{job.name}}?_method=put" method="post">
-
+            <h4 class="section">Edit <span class="brand-logo green-text text-darken-3">helpUp</span></h4>
             <div class="input-field">
               <input class='validate' placeholder="Title"type="text" name="job[name]"  id="edit-job-name" value="{{job.name}}">
               <label for="edit-job-name">Title</label>

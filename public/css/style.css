@@ -11,11 +11,17 @@ body {
  main {
    flex: 1 0 auto;
  }
+
+.brand-logo{
+   font-family: 'Baloo Paaji', 'Roboto', cursive;
+ }
+
+form .brand-logo{
+  font-size: 52px !important;
+}
 nav .brand-logo{
-  font-family: 'Baloo Paaji', 'Roboto', cursive;
   font-size: 46px !important;
   padding-left: 10px !important;
-
 }
 
 #toast-container {

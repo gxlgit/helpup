@@ -4,19 +4,19 @@
 
 <!-- <div class="container"> -->
 {{#each jobs as |job index|}}
+<!-- FIX IT make unorderd list -->
   <h3>
     <a href="/jobs/{{job.name}}">{{job.name}}</a>
   </h3>
   <div>
     {{job.description}}
   </div>
-
 {{/each}}
 </div>
 
 <div class="container card-panel yellow lighten-4">
-    <h3>Add New helpUp</h3>
       <form name= 'job' action="/jobs/{{job.name}}" method="post">
+        <h4>Add New <span class="brand-logo green-text text-darken-3">helpUp</span></h4>
         <div class="input-field hide">
           <label for="job-name">Creator</label>
           <input class='validate' type="text" name="job[creator]" id="job-creator" value={{currentUser.local.email}}>
@@ -46,7 +46,7 @@
           <label for="job-img">User Photo URL</label>
           <input class="validate" type="text" name="job[img]" id="job-img">
         </div>
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <button class="btn waves-effect waves-light green darken-3" type="submit" name="action">Submit
         </button>
       </form>
 <!-- </div> -->

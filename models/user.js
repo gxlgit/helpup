@@ -12,6 +12,8 @@ var User = mongoose.Schema({
                     img       : String,
                     address   : String,
                     phone     : String,
+                    //FIX THIS in the future would like every interest stored as a separate
+                    //item in the array
                     interests : [String],
     }
   }
@@ -21,7 +23,7 @@ User.methods.encrypt = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
   }
 
-  User.methods.validPassword = function(password) {
+User.methods.validPassword = function(password) {
       return bcrypt.compareSync(password, this.local.password)
     }
 

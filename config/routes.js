@@ -32,7 +32,7 @@ router.route("/logout")
 router.route('/profile')
   .get(authenticatedUser, profileController.getProfile)
   .put(authenticatedUser, profileController.updateProfile)
-  .delete(authenticatedUser, profileController.deleteProfile)
+  .delete(authenticatedUser, jobsController.removeJobsByCreator, profileController.deleteProfile)
 
 router.route('/jobs')
    .get(authenticatedUser, jobsController.getJobs)
