@@ -15,8 +15,8 @@ Organizations and individuals will signup and create a profile.  Once logged in 
 + opitmize for small screens
 + more validation on the forms
   + users can't enter a date in the past
-~~+ a location to the volunteer opportunity~~
-~~+ a map showing the location~~
++ ~~a location to the volunteer opportunity~~
++ ~~a map showing the location~~
 + a user thumbnail on the navbar after login
 + separate accounts for organizations
 + finesse layout and styles
