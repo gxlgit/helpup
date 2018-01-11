@@ -34,3 +34,9 @@ nav .brand-logo{
 .index-quote{
   padding: 0 !important;
 }
+
+#map {
+   width: 100%;
+   height: 400px;
+   background-color: grey;
+ }
