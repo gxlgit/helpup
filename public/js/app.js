@@ -70,6 +70,8 @@ $('.timepicker').pickatime({
           var address = document.getElementById('job-location').value
           console.log('in codeAddress')
           console.log('location=>'+address)
+          if (!address)
+            address = document.getElementById('job-location').innerHTML
           geocoder.geocode( { 'address': address}, function(results, status) {
             if (status == 'OK') {
               map.setCenter(results[0].geometry.location)
