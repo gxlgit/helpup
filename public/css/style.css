@@ -45,3 +45,9 @@ nav .brand-logo{
    width: 200px;
    height: 200px;
  }
+
+ .profile-avatar{
+   margin: 0 10px;
+   height: 30px;
+   width: 30px;
+ }

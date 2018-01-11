@@ -26,7 +26,14 @@
                 <li><a href="/logout">logout</a></li>
               </ul>
               <!-- Dropdown Trigger -->
-              <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{currentUser.local.handle}}<i class="material-icons right">arrow_drop_down</i></a></li>
+
+              <li class="">
+                <a class="dropdown-button valign-wrapper" href="#!" data-activates="dropdown1">
+                  <img src="{{currentUser.local.profile.img}}" alt="" class="circle valign profile-avatar" >
+                  {{currentUser.local.handle}}
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
+              </li>
 
             {{else}}
               <li><a href="/login">login</a></li>
