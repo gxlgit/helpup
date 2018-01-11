@@ -1,3 +1,4 @@
+<body onload="initializeFixedMap()">
 {{#if job}}
   <div class="section">
     <div class="row section">
@@ -71,6 +72,14 @@
               <input type="text" class="timepicker" name="job[time]" id="job-time" value="{{job.time}}">
             </div>
             <div class="input-field">
+              <label for="job-location">Location</label>
+              <div id="job-map"></div>
+              <div>
+                <input id="job-location" type="textbox" name="job[location]" value="{{job.location}}">
+                <input type="button" value="Find" onclick="codeAddress()">
+              </div>
+            </div>
+            <div class="input-field">
               <label for="job-img">User Photo URL</label>
               <input class="validate" type="text" name="job[img]" id="job-img" value="{{job.img}}">
             </div>
@@ -113,3 +122,4 @@
 {{else}}
 <h2>Sorry, that opportunity could not be found.</h2>
 {{/if}}
+</body>

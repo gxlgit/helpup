@@ -37,7 +37,7 @@ $('.timepicker').pickatime({
 //https://developers.google.com/maps/documentation/javascript/adding-a-google-map#key
   function initMap() {
 
-          var theMap = document.getElementById('job-map')
+          var theMap = document.getElementById('map')
           var location = {lat: -25.363, lng: 131.044}
           //var location = theMap.innerHTML
           var map = new google.maps.Map( theMap, {
@@ -49,32 +49,46 @@ $('.timepicker').pickatime({
             map: map
           })
         }
-
-        var geocoder;
-        var map;
+//https://developers.google.com/maps/documentation/javascript/geocoding#GetStarted
+        var geocoder
+        var map
+        var marker =  new google.maps.Marker()
         function initialize() {
           geocoder = new google.maps.Geocoder();
-          var latlng = new google.maps.LatLng(-34.397, 150.644);
+          var latlng = new google.maps.LatLng(-34.397, 150.644)
           var mapOptions = {
             zoom: 8,
             center: latlng
           }
-          map = new google.maps.Map(document.getElementById('job-map'), mapOptions);
+          map = new google.maps.Map(document.getElementById('job-map'), mapOptions)
+        }
+        function initializeFixedMap() {
+          geocoder = new google.maps.Geocoder();
+          var latlng = new google.maps.LatLng(-34.397, 150.644)
+          var mapOptions = {
+            zoom: 8,
+            center: latlng
+          }
+          map = new google.maps.Map(document.getElementById('job-map'), mapOptions)
+          codeAddress()
         }
 
         function codeAddress() {
-          var address = document.getElementById('address').value;
+          var address = document.getElementById('job-location').value
           geocoder.geocode( { 'address': address}, function(results, status) {
             if (status == 'OK') {
-              map.setCenter(results[0].geometry.location);
-              var marker = new google.maps.Marker({
+              map.setCenter(results[0].geometry.location)
+              marker.setMap(null)
+              marker.setMap({
                   map: map,
                   position: results[0].geometry.location
-              });
+              })
+
             } else {
-              alert('Geocode was not successful for the following reason: ' + status);
+              Materliaze.toast('Location not found', 4000, 'red')
+              //('Geocode was not successful for the following reason: ' + status);
             }
-          });
+          })
         }
 
 //w3Schools
