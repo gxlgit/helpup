@@ -1,17 +1,19 @@
-const express      = require('express')
-const app          = express()
-const mongoose     = require('mongoose')
-const passport     = require('passport')
-const flash        = require('connect-flash')
-const hbs          = require("hbs")
-const morgan       = require('morgan')
-const cookieParser = require('cookie-parser')
-const bodyParser   = require('body-parser')
-const session      = require('express-session')
+/*
+Connection file
+Mostly borrowed from WDI Express Passport lesson
+*/
+const express        = require('express')
+const app       	   = express()
+const mongoose  	   = require('mongoose')
+const passport  	   = require('passport')
+const flash      	   = require('connect-flash')
+const hbs          	 = require("hbs")
+const morgan       	 = require('morgan')
+const cookieParser 	 = require('cookie-parser')
+const bodyParser   	 = require('body-parser')
+const session      	 = require('express-session')
 const methodOverride = require('method-override')
-const PORT         = 6060
-
-
+const PORT        	 = 6060
 
 
 if (process.env.NODE_ENV == "production") {
@@ -20,8 +22,6 @@ if (process.env.NODE_ENV == "production") {
   mongoose.connect('mongodb://localhost/helpup',{useMongoClient: true})
 }
 mongoose.Promise = Promise
-
-mongodb://<dbuser>:<dbpassword>@ds151207.mlab.com:51207/helpup
 
 app.use(morgan('dev'))
 app.use(cookieParser())
