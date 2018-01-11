@@ -54,13 +54,14 @@ $('.timepicker').pickatime({
         var map
         var marker
         function initialize() {
+          htmlMap = document.getElementById('job-map')
           geocoder = new google.maps.Geocoder();
           var latlng = new google.maps.LatLng(-34.397, 150.644)
           var mapOptions = {
             zoom: 8,
             center: latlng
           }
-          map = new google.maps.Map(document.getElementById('job-map'), mapOptions)
+          map = new google.maps.Map(htmlMap, mapOptions)
         }
 
 

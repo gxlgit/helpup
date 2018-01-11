@@ -16,7 +16,12 @@
             {{job.date}} @  {{job.time}}
           </div>
         </div>
-        <div id="job-map">{{job.location}}</div>
+        {{#if creator}}
+          <div>{{job.location}}</div>
+        {{else}}
+          <div id="job-map"></div>
+          <div id="job-location">{{job.location}}</div>
+        {{/if}}
     </div>
     {{#if creator}}
     <div class="row">
