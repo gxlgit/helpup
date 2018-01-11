@@ -1,7 +1,6 @@
-var passport = require("passport")
+var passport = require('passport')
 
 function getSignup(request, response, next) {
-  
   response.render('signup.hbs', { message: request.flash('signupMessage') })
 }
 
@@ -11,7 +10,6 @@ function postSignup(request, response, next) {
      failureRedirect : '/signup',
      failureFlash : true
    })
-
    return signupStrategy(request, response, next)
  }
 
@@ -25,7 +23,6 @@ function postLogin(request, response, next) {
     failureRedirect : '/login',
     failureFlash : true
   })
-
   return loginProperty(request, response, next)
 }
 
@@ -35,16 +32,11 @@ function getLogout(request, response, next) {
   response.redirect('/')
 }
 
-// // Restricted page
-// function secret(request, response){
-//     response.render("secret.hbs")
-//   }
 
 module.exports = {
   getLogin: getLogin,
   postLogin: postLogin ,
   getSignup: getSignup,
   postSignup: postSignup,
-  getLogout: getLogout,
-  //secret: secret
+  getLogout: getLogout
 }

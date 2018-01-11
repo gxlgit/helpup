@@ -1,5 +1,4 @@
 const Jobs        = require('../models/job')
-var passport         = require("passport")
 
 function getJobs(request, response) {
   Jobs.Job.find({})
@@ -20,16 +19,14 @@ function showJob(request, response) {
   let name = request.params.name
 
   Jobs.Job.findOne({name: name})
-    .then( job =>{
-
-       //console.log("user.email=>"+request.user.local.email)
-      //console.log("creator =>"+ job.creator)
-
+    .then( job => {
       //if the current User created the job, allow them to edit/delete
       if( request.user.local.email === job.creator ){
         creator = true
-        //FIX IT eventually should give volunteer as an array of volunteer img, name, email
-        //for now this is hard coded in
+        //FIX IT eventually volunteers should be stored in db as a list of _ids
+        //then an array of volunteers should be created by querying the users
+        //this will make sure the list has the latest volunteer info
+        //for now this is hard coded in at the time of job signups
         response.render('job-show',
           {job: job, creator: creator, volunteer:volunteer})
       }
@@ -37,7 +34,7 @@ function showJob(request, response) {
       else{
         //referenced code from https://stackoverflow.com/questions/13097266/querying-nested-documents-using-mongoose-mongodb
         Jobs.Job.find({name:name,'volunteers.email':request.user.local.email})
-                    .then( volunteer =>{
+                    .then( volunteer => {
                       response.render('job-show',
                       {job: job, creator: creator, volunteer:volunteer})
                     })
@@ -48,8 +45,6 @@ function showJob(request, response) {
 function addJob(request, response) {
   Jobs.Job.create(request.body.job)
     .then( job => {
-      // if the job exists then go to the job page
-      //response.redirect(`/jobs/${job.name}`)
       response.redirect('/jobs')
     })
 }
@@ -70,6 +65,14 @@ function removeJob(request, response) {
       })
 }
 
+function removeJobsByCreator(request,response, next)
+{ console.log('removejobs')
+  Jobs.Job.remove({creator:request.user.local.email},  (err)=> {
+                  if (err) console.log(handleError(err))
+                  else return next()})
+
+}
+
 function removeVolunteer(request, response) {
   let name = request.params.name
   Jobs.Job.findOneAndUpdate(
@@ -82,7 +85,6 @@ function removeVolunteer(request, response) {
                                       response.redirect(`/jobs/${job.name}`)
                                     })
 }
-
 
 function addVolunteer(request, response) {
   let name = request.params.name
@@ -110,5 +112,6 @@ module.exports = {
   updateJob : updateJob,
   removeJob : removeJob,
   addVolunteer: addVolunteer,
-  removeVolunteer: removeVolunteer
+  removeVolunteer: removeVolunteer,
+  removeJobsByCreator: removeJobsByCreator
 }
