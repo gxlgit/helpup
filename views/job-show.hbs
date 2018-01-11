@@ -21,6 +21,12 @@
         {{else}}
           <div id="job-map"></div>
           <div id="job-location">{{job.location}}</div>
+          <a href="mailto:{{job.creator}}">
+            <div class="chip">
+                <i class="close material-icons">email</i>
+                Contact
+            </div>
+          </a>
         {{/if}}
     </div>
     {{#if creator}}
@@ -29,10 +35,6 @@
       {{#if job.volunteers}}
       <ul>
         {{#each job.volunteers as |volunteer index|}}
-          <!-- <li class=" light-blue-text text-darken-1">
-            {{volunteer.name}}
-            <a href="mailto:{{volunteer.email}}"><i class="material-icons left">email</i></a>
-          </li><br> -->
           <li>
             <a href="mailto:{{volunteer.email}}">
               <div class="chip">
