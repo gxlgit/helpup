@@ -12,9 +12,10 @@ Organizations and individuals will signup and create a profile.  Once logged in 
 ### Future fixes
 + On removing profile delete volunteer from any opportunities they are taking part in
 + upload photo files directly from the user's computer and host on S3
-+ opitmize for small screens
++ optimize for small screens
 + more validation on the forms
-  + users can't enter a date in the past
+  + ~~users can't enter a date in the past~~
++ users warned about deleting
 + ~~a location to the volunteer opportunity~~
 + ~~a map showing the location~~
 + a user thumbnail on the navbar after login
@@ -22,4 +23,4 @@ Organizations and individuals will signup and create a profile.  Once logged in 
 + finesse layout and styles
 + sorting jobs based on location, type, date, etc.
 + job calendar
-+ optimize for mobile
+
