@@ -83,8 +83,8 @@ $('.timepicker').pickatime({
         }
 
       function initializeFixedMap() {
-          initialize()
-          codeAddress()
+          initialize().then(codeAddress())
+
       }
 
 //w3Schools
