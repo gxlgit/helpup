@@ -35,20 +35,20 @@ $('.timepicker').pickatime({
   );
 
 //https://developers.google.com/maps/documentation/javascript/adding-a-google-map#key
-  // function initMap() {
-  //
-  //         var theMap = document.getElementById('map')
-  //         var location = {lat: -25.363, lng: 131.044}
-  //         //var location = theMap.innerHTML
-  //         var map = new google.maps.Map( theMap, {
-  //           zoom: 4,
-  //           center: location
-  //         })
-  //         var marker = new google.maps.Marker({
-  //           position: location,
-  //           map: map
-  //         })
-  //       }
+  function initMap() {
+
+          var theMap = document.getElementById('map')
+          var location = {lat: -25.363, lng: 131.044}
+          //var location = theMap.innerHTML
+          var map = new google.maps.Map( theMap, {
+            zoom: 4,
+            center: location
+          })
+          var marker = new google.maps.Marker({
+            position: location,
+            map: map
+          })
+        }
 //https://developers.google.com/maps/documentation/javascript/geocoding#GetStarted
         var geocoder
         var map
