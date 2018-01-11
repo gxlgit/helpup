@@ -36,14 +36,44 @@ $('.timepicker').pickatime({
 
 //https://developers.google.com/maps/documentation/javascript/adding-a-google-map#key
   function initMap() {
-          var uluru = {lat: -25.363, lng: 131.044};
-          var map = new google.maps.Map(document.getElementById('map'), {
+
+          var theMap = document.getElementById('job-map')
+          var location = {lat: -25.363, lng: 131.044}
+          //var location = theMap.innerHTML
+          var map = new google.maps.Map( theMap, {
             zoom: 4,
-            center: uluru
-          });
+            center: location
+          })
           var marker = new google.maps.Marker({
-            position: uluru,
+            position: location,
             map: map
+          })
+        }
+
+        var geocoder;
+        var map;
+        function initialize() {
+          geocoder = new google.maps.Geocoder();
+          var latlng = new google.maps.LatLng(-34.397, 150.644);
+          var mapOptions = {
+            zoom: 8,
+            center: latlng
+          }
+          map = new google.maps.Map(document.getElementById('job-map'), mapOptions);
+        }
+
+        function codeAddress() {
+          var address = document.getElementById('address').value;
+          geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == 'OK') {
+              map.setCenter(results[0].geometry.location);
+              var marker = new google.maps.Marker({
+                  map: map,
+                  position: results[0].geometry.location
+              });
+            } else {
+              alert('Geocode was not successful for the following reason: ' + status);
+            }
           });
         }
 

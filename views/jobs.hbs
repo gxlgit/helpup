@@ -1,3 +1,4 @@
+<body onload="initialize()">
 <div class = "section">
 <h1>Ready to Make a Difference?</h1>
 <h4 class="blue-grey-text">Current helpUps</h4>
@@ -26,7 +27,6 @@
           <label for="job-name">Title</label>
           <input class='validate' type="text" name="job[name]"  id="job-name">
         </div>
-
         <div class="input-field">
           <label for="job-description">Description</label>
           <input class='validate' type="text" name="job[description]" id="job-description">
@@ -43,6 +43,15 @@
           <!-- <input class='validate' type="time" name="job[time]" id="job-time"> -->
         </div>
         <div class="input-field">
+          <label for="job-location">Location</label>
+          <div id="job-map"></div>
+          <div>
+            <input id="address" type="textbox" value="Sydney, NSW">
+            <input type="button" value="Find" onclick="codeAddress()">
+          </div>
+          <!-- <input class='validate' type="text" name="job[location]" id="job-location"> -->
+        </div>
+        <div class="input-field">
           <label for="job-img">User Photo URL</label>
           <input class="validate" type="text" name="job[img]" id="job-img">
         </div>
@@ -50,3 +59,4 @@
         </button>
       </form>
 <!-- </div> -->
+</body>

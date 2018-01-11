@@ -15,7 +15,7 @@
             {{job.date}} @  {{job.time}}
           </div>
         </div>
-        <div id="map"></div>
+        <div id="job-map">{{job.location}}</div>
     </div>
     {{#if creator}}
     <div class="row">
@@ -109,8 +109,6 @@
     {{/if}}
   </div>
   {{/if}}
-
-
 
 {{else}}
 <h2>Sorry, that opportunity could not be found.</h2>
