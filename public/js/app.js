@@ -35,24 +35,24 @@ $('.timepicker').pickatime({
   );
 
 //https://developers.google.com/maps/documentation/javascript/adding-a-google-map#key
-  function initMap() {
-
-          var theMap = document.getElementById('map')
-          var location = {lat: -25.363, lng: 131.044}
-          //var location = theMap.innerHTML
-          var map = new google.maps.Map( theMap, {
-            zoom: 4,
-            center: location
-          })
-          var marker = new google.maps.Marker({
-            position: location,
-            map: map
-          })
-        }
+  // function initMap() {
+  //
+  //         var theMap = document.getElementById('map')
+  //         var location = {lat: -25.363, lng: 131.044}
+  //         //var location = theMap.innerHTML
+  //         var map = new google.maps.Map( theMap, {
+  //           zoom: 4,
+  //           center: location
+  //         })
+  //         var marker = new google.maps.Marker({
+  //           position: location,
+  //           map: map
+  //         })
+  //       }
 //https://developers.google.com/maps/documentation/javascript/geocoding#GetStarted
         var geocoder
         var map
-        var marker =  new google.maps.Marker()
+        var marker
         function initialize() {
           geocoder = new google.maps.Geocoder();
           var latlng = new google.maps.LatLng(-34.397, 150.644)
@@ -69,7 +69,7 @@ $('.timepicker').pickatime({
           geocoder.geocode( { 'address': address}, function(results, status) {
             if (status == 'OK') {
               map.setCenter(results[0].geometry.location)
-              marker.setMap(null)
+              marker =  new google.maps.Marker()
               marker.setMap({
                   map: map,
                   position: results[0].geometry.location
