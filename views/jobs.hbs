@@ -16,7 +16,7 @@
 </div>
 
 <div class="container card-panel yellow lighten-4">
-      <form name= 'job' action="/jobs/{{job.name}}" method="post">
+      <form name= 'job' action="/jobs/{{job.name}}" method="post" onsubmit="return validateCreateJob()">
         <h4>Add New <span class="brand-logo green-text text-darken-3">helpUp</span></h4>
         <div class="input-field hide">
           <label for="job-name">Creator</label>
@@ -53,7 +53,7 @@
         </div>
         <div class="input-field">
           <label for="job-img">User Photo URL</label>
-          <input class="validate" type="text" name="job[img]" id="job-img">
+          <input type="text" name="job[img]" id="job-img">
         </div>
         <button class="btn waves-effect waves-light green darken-3" type="submit" name="action">Submit
         </button>

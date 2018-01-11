@@ -36,8 +36,14 @@
           <li>
             <a href="mailto:{{volunteer.email}}">
               <div class="chip">
-                <img src="{{volunteer.img}}" alt="{{volunteer.name}}" >
-                {{volunteer.name}}
+                {{#if volunteer.img}}
+                  <img src="{{volunteer.img}}" alt="{{volunteer.name}}" >
+                  {{volunteer.name}}
+                  <i class="close material-icons">email</i>
+                {{else}}
+                  <i class="close material-icons">email</i>
+                  {{volunteer.name}}
+                {{/if}}
               </div>
             </a>
           </li>

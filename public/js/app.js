@@ -88,7 +88,7 @@ $('.timepicker').pickatime({
         }
 
 //w3Schools
-  function validateSignup() {
+function validateSignup() {
 
     if ( document.forms['signup']['name'].value === '') {
         Materialize.toast('Must give a name!', 4000, 'red') // 4000 is the duration of the toast
@@ -111,4 +111,32 @@ $('.timepicker').pickatime({
         //alert('Must give a name');
         return false
     }
+}
+
+function validateCreateJob() {
+  if ( document.forms['job']['job[name]'].value === '') {
+      Materialize.toast('Must give a name!', 4000, 'red') // 4000 is the duration of the toast
+      //alert('Must give a name');
+      return false
+  }
+  if ( document.forms['job']['job[description]'].value === '') {
+      Materialize.toast('Must give a description!', 4000, 'red') // 4000 is the duration of the toast
+      //alert('Must give a name');
+      return false
+  }
+  if ( document.forms['job']['job[location]'].value === '') {
+      Materialize.toast('Must give a location!', 4000, 'red') // 4000 is the duration of the toast
+      //alert('Must give a name');
+      return false
+  }
+  if ( document.forms['job']['job[time]'].value === '') {
+      Materialize.toast('Must give a time!', 4000, 'red') // 4000 is the duration of the toast
+      //alert('Must give a name');
+      return false
+  }
+  if ( document.forms['job']['job[date]'].value === '') {
+      Materialize.toast('Must give a date!', 4000, 'red') // 4000 is the duration of the toast
+      //alert('Must give a name');
+      return false
+  }
 }
