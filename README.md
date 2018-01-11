@@ -22,3 +22,4 @@ Organizations and individuals will signup and create a profile.  Once logged in 
 + finesse layout and styles
 + sorting jobs based on location, type, date, etc.
 + job calendar
++ optimize for mobile
