@@ -52,11 +52,11 @@ $('.timepicker').pickatime({
 //https://developers.google.com/maps/documentation/javascript/geocoding#GetStarted
         var geocoder
         var map
-        var marker
+
         function initialize() {
           htmlMap = document.getElementById('job-map')
           geocoder = new google.maps.Geocoder();
-          var latlng = new google.maps.LatLng(-34.397, 150.644)
+          var latlng = new google.maps.LatLng(38.8935755,-77.0846155)
           var mapOptions = {
             zoom: 8,
             center: latlng
@@ -68,18 +68,18 @@ $('.timepicker').pickatime({
 
         function codeAddress() {
           var address = document.getElementById('job-location').value
+          console.log('in codeAddress')
           console.log('location=>'+address)
           geocoder.geocode( { 'address': address}, function(results, status) {
             if (status == 'OK') {
               map.setCenter(results[0].geometry.location)
-              marker =  new google.maps.Marker()
-              marker.setMap({
-                  map: map,
-                  position: results[0].geometry.location
-              })
+              var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
+            })
 
             } else {
-              Materliaze.toast('Location not found', 4000, 'red')
+              Materialize.toast('Location not found', 4000, 'red')
               //('Geocode was not successful for the following reason: ' + status);
             }
           })
