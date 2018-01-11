@@ -36,7 +36,12 @@ nav .brand-logo{
 }
 
 #job-map {
-   width: 30%;
+   width: 50%;
    height: 200px;
    background-color: grey;
+ }
+
+ .profile-photo{
+   width: 200px;
+   height: 200px;
  }

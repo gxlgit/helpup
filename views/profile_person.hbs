@@ -2,27 +2,20 @@
   <h4>Edit Profile</h4>
 </div>
 
-<!-- {{#if message}}
-  <div class="alert alert-danger">{{message}}</div>
-{{/if}} -->
+{{#if message}}
+  <div class="red-text text-darken-2">{{message}}</div>
+{{/if}}
 <div class="row">
-  <!-- photo input -->
-  <!-- <form action="/profile/{{currentUser.local.email}}" method="post">
-      <div class="file-field input-field">
-        <div class="btn">
-          <span>Add Photo</span>
-          <input type="file" >
-        </div>
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text" name="photos">
-        </div>
-      </div>
-      <button class="btn waves-effect waves-light green darken-3 col" type="submit" name="action">Update
-      </button>
-    </form> -->
   <div class="col s4">
-      <img src="{{profile.img}}" alt="your profile photo" height="200" width="200">
+    <div class="grey profile-photo">
+      {{#if profile.img}}
+        <img src="{{profile.img}}" alt="your profile photo" height="200" width="200">
+      {{else}}
+        Profile Photo
+      {{/if}}
+    </div>
   </div>
+
 
   <form action="/profile?_method=put" method="post">
     <div class="col s8">
