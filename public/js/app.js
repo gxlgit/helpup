@@ -34,58 +34,48 @@ $('.timepicker').pickatime({
     }
   );
 
-//https://developers.google.com/maps/documentation/javascript/adding-a-google-map#key
-  // function initMap() {
-  //
-  //         var theMap = document.getElementById('map')
-  //         var location = {lat: -25.363, lng: 131.044}
-  //         //var location = theMap.innerHTML
-  //         var map = new google.maps.Map( theMap, {
-  //           zoom: 4,
-  //           center: location
-  //         })
-  //         var marker = new google.maps.Marker({
-  //           position: location,
-  //           map: map
-  //         })
-  //       }
+
 //https://developers.google.com/maps/documentation/javascript/geocoding#GetStarted
-        var geocoder
-        var map
+var geocoder
+var map
 
-        function initialize() {
-          htmlMap = document.getElementById('job-map')
-          geocoder = new google.maps.Geocoder()
-          var latlng = new google.maps.LatLng(38.8935755,-77.0846155)
-          var mapOptions = {
-            zoom: 8,
-            center: latlng
-          }
-          map = new google.maps.Map(htmlMap, mapOptions)
-          codeAddress()
-        }
+function initialize() {
+  htmlMap = document.getElementById('job-map')
+  geocoder = new google.maps.Geocoder()
+  var latlng = new google.maps.LatLng(38.8935755,-77.0846155)
+  var mapOptions = {
+    zoom: 8,
+    center: latlng
+  }
+  map = new google.maps.Map(htmlMap, mapOptions)
+  codeAddress()
+}
 
+var marker = null
+function codeAddress() {
+  var address = document.getElementById('job-location').value
+  console.log('in codeAddress')
+  console.log('location=>'+address)
+  if (!address)
+    address = document.getElementById('job-location').innerHTML
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == 'OK') {
+      if(marker){
+        marker.setMap(null)
+      }
+      map.setCenter(results[0].geometry.location)
+      marker = new google.maps.Marker({
+      map: map,
+      position: results[0].geometry.location
 
-        function codeAddress() {
-          var address = document.getElementById('job-location').value
-          console.log('in codeAddress')
-          console.log('location=>'+address)
-          if (!address)
-            address = document.getElementById('job-location').innerHTML
-          geocoder.geocode( { 'address': address}, function(results, status) {
-            if (status == 'OK') {
-              map.setCenter(results[0].geometry.location)
-              var marker = new google.maps.Marker({
-              map: map,
-              position: results[0].geometry.location
-            })
+    })
 
-            } else {
-              Materialize.toast('Location not found', 4000, 'red')
-              //('Geocode was not successful for the following reason: ' + status);
-            }
-          })
-        }
+    } else {
+      Materialize.toast('Location not found', 4000, 'red')
+      //('Geocode was not successful for the following reason: ' + status);
+    }
+  })
+}
 
 //w3Schools
 function validateSignup() {
