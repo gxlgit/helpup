@@ -82,10 +82,9 @@ $('.timepicker').pickatime({
           })
         }
 
-      function initializeFixedMap() {
-          initialize().then(codeAddress())
-
-      }
+      // function initializeFixedMap() {
+      //     initialize().then(codeAddress())
+      // }
 
 //w3Schools
   function validateSignup() {
