@@ -14,7 +14,7 @@ Organizations and individuals will signup and create a profile.  Once logged in 
 + upload photo files directly from the user's computer and host on S3
 + optimize for small screens
 + more validation on the forms
-  + users can't enter a date in the past
+  + ~~users can't enter a date in the past~~
 + users warned about deleting
 + ~~a location to the volunteer opportunity~~
 + ~~a map showing the location~~
