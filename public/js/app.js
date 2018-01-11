@@ -55,7 +55,7 @@ $('.timepicker').pickatime({
 
         function initialize() {
           htmlMap = document.getElementById('job-map')
-          geocoder = new google.maps.Geocoder();
+          geocoder = new google.maps.Geocoder()
           var latlng = new google.maps.LatLng(38.8935755,-77.0846155)
           var mapOptions = {
             zoom: 8,
@@ -76,7 +76,7 @@ $('.timepicker').pickatime({
             if (status == 'OK') {
               map.setCenter(results[0].geometry.location)
               var marker = new google.maps.Marker({
-              map: resultsMap,
+              map: map,
               position: results[0].geometry.location
             })
 

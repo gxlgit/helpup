@@ -6,7 +6,7 @@ function getSignup(request, response, next) {
 
 function postSignup(request, response, next) {
    var signupStrategy = passport.authenticate('local-signup', {
-     successRedirect : '/jobs',
+     successRedirect : '/profile',
      failureRedirect : '/signup',
      failureFlash : true
    })
